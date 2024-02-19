@@ -1,4 +1,20 @@
 {
+  "name": "teams-networking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rimraf docs",
+    "clear": "npm run clean && rimraf node_modules",
+    "prebuild": "npm run clean",
+    "build": "webpack --mode production",
+    "start": "webpack serve --open",
+    "demo": "set PORT=8080 && serve docs"
+  },
+  "keywords": [],
+  "author": "Todea Iulia",
+  "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.10.0",
     "html-loader": "^5.0.0",
