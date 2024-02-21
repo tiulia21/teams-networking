@@ -1,4 +1,5 @@
 import "./style.css";
+//./ in folderul in care ma aflu eu
 console.info("app ready");
 
 function loadTeams() {
