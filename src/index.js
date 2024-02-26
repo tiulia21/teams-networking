@@ -1,7 +1,19 @@
 import "./style.css";
-//./ in folderul in care ma aflu eu
-//console.warn("app ready");//
 
+function createTeamRequest() {
+  fetch("http://localhost:3000/teams-json/create", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      promotion: "WON3",
+      members: "Your Name",
+      name: "CV",
+      url: "https://github.com/nmatei/teams-networking"
+    })
+  });
+}
 function getTeamAsHTML(team) {
   return `<tr>
  <td>${team.promotion}</td>
@@ -29,4 +41,15 @@ function loadTeams() {
     });
   console.warn("loadTeams", promise);
 }
+function onSubmit(e) {
+  e.preventDefault();
+  console.warn("please save all values");
+  createTeamRequest();
+  window.location.reload();
+}
+function initiEvents() {
+  document.querySelector("#teamsForm").addEventListener("submit", onSubmit);
+}
+
+initiEvents();
 loadTeams();
