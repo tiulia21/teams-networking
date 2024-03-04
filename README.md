@@ -2,7 +2,7 @@
 
 ```sh
 cd ../node-api && npm start
-or
+#or
 npm run api
 ```
 
