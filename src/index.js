@@ -36,18 +36,23 @@ function loadTeams() {
     });
   console.warn("loadTeams", promise);
 }
+
+function getFormValues() {
+  return {
+    promotion: document.getElementById("promotion").value,
+    members: document.querySelector("#members").value,
+    name: document.querySelector("input[name=name]").value,
+    url: document.querySelectorAll("input[name=url]")[0].value
+  };
+}
 function onSubmit(e) {
   e.preventDefault();
-  console.warn("please save all values");
-  let team = {
-    promotion: "WON3",
-    members: "Your Name",
-    name: "CV",
-    url: "https://github.com/nmatei/teams-networking"
-  };
+  let team = getFormValues();
+  createTeamRequest(team);
   createTeamRequest();
   window.location.reload();
 }
+
 function initiEvents() {
   document.querySelector("#teamsForm").addEventListener("submit", onSubmit);
 }
