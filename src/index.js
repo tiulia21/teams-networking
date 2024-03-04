@@ -1,6 +1,6 @@
 import "./style.css";
 
-function createTeamRequest() {
+function createTeamRequest(team) {
   fetch("http://localhost:3000/teams-json/create", {
     method: "POST",
     headers: {
@@ -9,20 +9,21 @@ function createTeamRequest() {
     body: JSON.stringify(team)
   });
 }
+
 function getTeamAsHTML(team) {
   return `<tr>
- <td>${team.promotion}</td>
- <td>${team.members}</td>
- <td>${team.name}</td>
- <td>${team.url}</td>
- <td>x</td>
- </tr>`;
+    <td>${team.promotion}</td>
+    <td>${team.members}</td>
+    <td>${team.name}</td>
+    <td>${team.url}</td>
+    <td>x</td>
+  </tr>`;
 }
 
 function renderTeams(teams) {
   // console.warn("render", teams);
   const teamsHTML = teams.map(getTeamAsHTML);
-  //console.info(teamsHTML);
+  // console.info(teamsHTML);
 
   document.querySelector("#teamsTable tbody").innerHTML = teamsHTML.join("");
 }
@@ -34,7 +35,6 @@ function loadTeams() {
       renderTeams(teams);
       return teams;
     });
-  console.warn("loadTeams", promise);
 }
 
 function getFormValues() {
@@ -45,17 +45,17 @@ function getFormValues() {
     url: document.querySelectorAll("input[name=url]")[0].value
   };
 }
+
 function onSubmit(e) {
   e.preventDefault();
   let team = getFormValues();
   createTeamRequest(team);
-  createTeamRequest();
   window.location.reload();
 }
 
-function initiEvents() {
+function initEvents() {
   document.querySelector("#teamsForm").addEventListener("submit", onSubmit);
 }
 
-initiEvents();
+initEvents();
 loadTeams();
