@@ -13,6 +13,7 @@ function createTeamRequest(team) {
     body: JSON.stringify(team)
   });
 }
+
 function deleteTeamRequest(id) {
   fetch("http://localhost:3000/teams-json/delete", {
     method: "DELETE",
@@ -22,8 +23,9 @@ function deleteTeamRequest(id) {
     body: JSON.stringify({ id: id })
   });
 }
-window.deleteTeamRequest = deleteTeamRequest;
 //make deleteTeamrequest available from global context
+window.deleteTeamRequest = deleteTeamRequest;
+
 function getTeamAsHTML(team) {
   return `<tr>
     <td>${team.promotion}</td>
@@ -31,7 +33,7 @@ function getTeamAsHTML(team) {
     <td>${team.name}</td>
     <td>${team.url}</td>
     <td>
-    <a href="#" onClick="deleteTeamRequest('${team.id}')">✖</a>
+    <a href="#" onclick="deleteTeamRequest('${team.id}')">✖</a>
     </td>
   </tr>`;
 }
