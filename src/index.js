@@ -6,12 +6,7 @@ function createTeamRequest() {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      promotion: "WON3",
-      members: "Your Name",
-      name: "CV",
-      url: "https://github.com/nmatei/teams-networking"
-    })
+    body: JSON.stringify(team)
   });
 }
 function getTeamAsHTML(team) {
@@ -44,6 +39,12 @@ function loadTeams() {
 function onSubmit(e) {
   e.preventDefault();
   console.warn("please save all values");
+  let team = {
+    promotion: "WON3",
+    members: "Your Name",
+    name: "CV",
+    url: "https://github.com/nmatei/teams-networking"
+  };
   createTeamRequest();
   window.location.reload();
 }
