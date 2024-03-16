@@ -18,17 +18,20 @@
       </div>
     </header>
     <section>
-      <form id="teamsForm" method="post">
+      <form id="teamsForm" method="get">
         <table id="teamsTable" border="1">
           <colgroup>
-            <col style="width: 125px;/> <col style="width: 125px;/> <col style="width: 125px;/> <col style="width:
-            125px;/> <col style="width: 125px;/>
+            <col style="width: 125px" />
+            <col />
+            <col />
+            <col style="width: 300px" />
+            <col style="width: 80px" />
           </colgroup>
           <thead>
             <tr>
               <th>Promotion</th>
               <th>Members</th>
-              <th>Project Names</th>
+              <th>Project Name</th>
               <th>Project URL</th>
               <th></th>
             </tr>
@@ -46,11 +49,11 @@
                 <input type="text" name="name" id="name" placeholder="Enter name" required />
               </td>
               <td>
-                <input type="text" name="url" id="url" placeholder="Enter url" required />
+                <input type="text" name="url" id="url" placeholder="Enter project url" required />
               </td>
               <td>
                 <button type="submit">💾</button>
-                <button tupe="reset">📤</button>
+                <button type="reset">✖</button>
               </td>
             </tr>
           </tfoot>
@@ -58,7 +61,7 @@
       </form>
     </section>
     <footer>
-      <a href="https://github.com/nmatei/teams-networking" target="_blank" 👩‍🏫>Source code</a>
+      <a href="https://github.com/nmatei/teams-networking" target="_blank">👨‍💻 Source code</a>
     </footer>
   </body>
 </html>
