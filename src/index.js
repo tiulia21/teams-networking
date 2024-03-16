@@ -23,6 +23,21 @@ function deleteTeamRequest(id) {
     body: JSON.stringify({ id: id })
   });
 }
+function updateTeamRequest() {
+  fetch("http://localhost:3000/teams-json/update", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      id: "fedcba1610310163146",
+      promotion: "WON3",
+      members: "UpdatedName",
+      name: "Name",
+      url: "https://github.com/nmatei/teams-networking"
+    })
+  });
+}
 
 function getTeamAsHTML(team) {
   return `<tr>
