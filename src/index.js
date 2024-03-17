@@ -1,5 +1,7 @@
 import "./style.css";
+
 let allTeams = [];
+let editId;
 
 function $(selector) {
   return document.querySelector(selector);
@@ -24,19 +26,14 @@ function deleteTeamRequest(id) {
     body: JSON.stringify({ id: id })
   });
 }
-function updateTeamRequest() {
+
+function updateTeamRequest(team) {
   fetch("http://localhost:3000/teams-json/update", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
-      id: "fedcba1610310163146",
-      promotion: "WON3",
-      members: "UpdatedName",
-      name: "Name",
-      url: "https://github.com/nmatei/teams-networking"
-    })
+    body: JSON.stringify(team)
   });
 }
 
@@ -47,8 +44,8 @@ function getTeamAsHTML(team) {
     <td>${team.name}</td>
     <td>${team.url}</td>
     <td>
-      <a href="#" data-id="${team.id}" class="delete-btn">✖</a>
-      <a href="#" data-id="${team.id}" class="edit-btn">&#9998;</a>  
+      <a href="#" data-id="${team.id}" class="delete-btn">✖</a> 
+      <a href="#" data-id="${team.id}" class="edit-btn">&#9998;</a> 
     </td>
   </tr>`;
 }
@@ -65,7 +62,6 @@ function loadTeams() {
   const promise = fetch("http://localhost:3000/teams-json")
     .then(r => r.json())
     .then(teams => {
-      console.info(teams);
       allTeams = teams;
       renderTeams(teams);
       return teams;
@@ -91,13 +87,18 @@ function setFormValues(team) {
 function onSubmit(e) {
   e.preventDefault();
   let team = getFormValues();
-  createTeamRequest(team);
+  if (editId) {
+    team.id = editId;
+    updateTeamRequest(team);
+  } else {
+    createTeamRequest(team);
+  }
   window.location.reload();
 }
 
 function startEdit(id) {
+  editId = id;
   const team = allTeams.find(team => {
-    console.info(id, id === team.id, team);
     return id === team.id;
   });
   setFormValues(team);
@@ -112,7 +113,7 @@ function initEvents() {
       window.location.reload();
     } else if (e.target.matches("a.edit-btn")) {
       e.preventDefault();
-      //const id = e.target.getAttribute("dat-id");
+      //const id = e.target.getAttribute("data-id");
       const id = e.target.dataset.id;
       startEdit(id);
     }
